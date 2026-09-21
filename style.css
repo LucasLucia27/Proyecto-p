@@ -1,0 +1,363 @@
+/* Si preferís usar tu fuente Love.ttf en vez de Great Vibes, descomenta esto
+   y asegurate de que font/Love.ttf exista: */
+/*
+@font-face{
+    font-family:"Love";
+    src:url("font/Love.ttf") format("truetype");
+}
+*/
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    overflow:hidden;
+    background:radial-gradient(circle at center,#4b006e,#120019,#000000);
+    height:100vh;
+    font-family:sans-serif;
+}
+
+canvas{
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+/* ---------- Pantalla de inicio ---------- */
+#intro{
+    position:fixed;
+    inset:0;
+    background:black;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+    text-align:center;
+    padding:20px;
+    transition:opacity 1s ease;
+}
+
+#intro h1{
+    color:#ff78d5;
+    font-size:65px;
+    text-shadow:0 0 25px hotpink;
+    font-family:"Great Vibes",cursive;
+    margin:0 0 10px 0;
+}
+
+#intro p{
+    color:white;
+    font-size:18px;
+    margin-bottom:25px;
+}
+
+#intro button{
+    background:#ff5cc8;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+    box-shadow:0 0 20px hotpink;
+}
+
+/* ---------- Texto "Te amo" ---------- */
+.loveText{
+    position:absolute;
+    top:28%;
+    left:50%;
+    transform:translateX(-50%);
+    color:white;
+    font-size:45px;
+    font-family:"Great Vibes",cursive;
+    text-shadow:0 0 20px #ff5cc8;
+    z-index:5;
+    pointer-events:none;
+    text-align:center;
+    width:90%;
+}
+
+/* ---------- Fotos flotando ---------- */
+.photo{
+    position:absolute;
+    width:90px;
+    animation:float 8s ease-in-out infinite;
+    z-index:5;
+}
+
+.photo img{
+    width:100%;
+    border-radius:15px;
+    border:2px solid white;
+    box-shadow:0 0 15px pink;
+    display:block;
+}
+
+.p1{ top:25%; left:15%; }
+.p2{ top:50%; right:20%; }
+.p3{ bottom:20%; left:30%; }
+
+@keyframes float{
+    0%,100%{ transform:translateY(0px) rotate(-4deg); }
+    50%{ transform:translateY(-18px) rotate(4deg); }
+}
+
+/* ---------- Palabras flotantes ---------- */
+.word{
+    position:absolute;
+    color:white;
+    font-size:18px;
+    animation:move 6s infinite alternate;
+    text-shadow:0 0 10px pink;
+    z-index:5;
+    pointer-events:none;
+}
+
+.w1{ top:35%; left:8%; }
+.w2{ top:40%; right:18%; }
+.w3{ bottom:30%; left:20%; }
+.w4{ bottom:25%; right:12%; }
+
+@keyframes move{
+    from{ transform:translateY(0); }
+    to{ transform:translateY(-15px); }
+}
+
+/* ---------- Partículas brillando (sparkles) ---------- */
+.sparkle{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    box-shadow:0 0 10px white;
+    animation:spark 3s linear infinite;
+    z-index:4;
+    pointer-events:none;
+}
+
+@keyframes spark{
+    0%{ opacity:0; transform:translateY(40px); }
+    50%{ opacity:1; }
+    100%{ opacity:0; transform:translateY(-60px); }
+}
+
+/* ---------- Hello Kitty / decoraciones ---------- */
+.kitty{
+    position:absolute;
+    width:90px;
+    animation:float 7s infinite;
+    z-index:5;
+}
+
+.k1{ top:28%; right:15%; }
+.k2{ bottom:25%; left:60%; }
+
+/* ---------- Botón de música ---------- */
+#start{
+    position:absolute;
+    bottom:30px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#ff5cc8;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+    box-shadow:0 0 20px hotpink;
+    z-index:10;
+}
+
+.popup{
+    position:fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(255, 92, 200, 0.9);
+    color: white;
+    padding: 14px 22px;
+    border-radius: 20px;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 0 0 20px hotpink;
+    max-width: 280px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 20;
+}
+
+.popup.show{
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ========================================= */
+/* RESPONSIVE PARA CELULARES */
+/* ========================================= */
+
+@media screen and (max-width: 768px){
+
+    body{
+        overflow:hidden;
+    }
+
+    canvas{
+        width:100% !important;
+        height:100% !important;
+    }
+
+    /* Pantalla inicial */
+
+    #intro h1{
+        font-size:48px;
+    }
+
+    #intro p{
+        font-size:16px;
+        width:90%;
+    }
+
+    #intro button{
+        padding:12px 28px;
+        font-size:15px;
+    }
+
+    /* Texto principal */
+
+    .loveText{
+        top:12%;
+        font-size:48px;
+        width:90%;
+        line-height:1.1;
+        text-align:center;
+    }
+
+    /* Fotos */
+
+    .photo{
+        width:95px;
+    }
+
+    .p1{
+        top:28%;
+        left:5%;
+    }
+
+    .p2{
+        top:45%;
+        right:5%;
+    }
+
+    .p3{
+        bottom:20%;
+        left:50%;
+        transform:translateX(-50%);
+    }
+
+    /* Palabras */
+
+    .word{
+        font-size:15px;
+        max-width:120px;
+        text-align:center;
+    }
+
+    .w1{
+        top:38%;
+        left:5%;
+    }
+
+    .w2{
+        top:56%;
+        right:5%;
+    }
+
+    .w3{
+        bottom:30%;
+        left:5%;
+    }
+
+    .w4{
+        bottom:12%;
+        right:5%;
+    }
+
+    /* Hello Kitty */
+
+    .kitty{
+        width:70px;
+    }
+
+    .k1{
+        top:20%;
+        right:5%;
+    }
+
+    .k2{
+        bottom:18%;
+        left:70%;
+    }
+
+    /* Botón música */
+
+    #start{
+        width:85%;
+        max-width:300px;
+        bottom:20px;
+        font-size:15px;
+        padding:14px 20px;
+    }
+
+    /* Popup */
+
+    .popup{
+        width:90%;
+        max-width:320px;
+        bottom:90px;
+        font-size:15px;
+        padding:16px;
+    }
+
+}
+
+/* ========================================= */
+/* CELULARES PEQUEÑOS (iPhone SE, Samsung A, etc.) */
+/* ========================================= */
+
+@media screen and (max-width: 480px){
+
+    #intro h1{
+        font-size:42px;
+    }
+
+    .loveText{
+        top:10%;
+        font-size:42px;
+    }
+
+    .photo{
+        width:80px;
+    }
+
+    .kitty{
+        width:60px;
+    }
+
+    .word{
+        font-size:13px;
+        max-width:100px;
+    }
+
+    .popup{
+        font-size:14px;
+        padding:14px;
+    }
+
+}
